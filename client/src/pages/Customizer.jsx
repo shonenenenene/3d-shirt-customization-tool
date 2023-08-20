@@ -39,22 +39,6 @@ const Customizer = () => {
       
   }
 
-  const handleSubmit = async (type) => {
-
-    if (!prompt) return alert('Please enter a prompt')
-
-    try {
-      // generate ai pic
-
-    } catch (error) {
-      alert(error)
-    } finally {
-      setGeneratingImg(false)
-      setActiveEditorTab('')
-    }
-
-  }
-
   const handleDecals = (type, result) => {
 
     const decalType = DecalTypes[type]
@@ -115,10 +99,13 @@ const Customizer = () => {
                   <Tab
                     key={tab.name}
                     tab={tab}
-                    handleClick={() => setActiveEditorTab(tab.name)}
+                    handleClick={() => {
+                      return activeEditorTab === tab.name 
+                      ? setActiveEditorTab('')
+                      : setActiveEditorTab(tab.name)
+                    }}
                   />
                 ))}
-
                 {generateTabContent()}
               </div>
             </div>
